@@ -45,6 +45,10 @@ test('type error', t => {
 	t.throws(() => m(5), 'Expected `encodedURI` to be of type `string`, got `number`');
 });
 
+test('CVE-2022-38900', t => {
+	t.notThrows(() => m('# kun%ea%ba%5a%ba'), 'Expected proper handling of malicious string');
+});
+
 for (const input of Object.keys(tests)) {
 	test(macro, input, tests[input]);
 }
